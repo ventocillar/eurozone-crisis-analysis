@@ -1,0 +1,4 @@
+period,cv_debt_mean,cv_unemployment_mean,cv_spread_mean,sd_debt_mean,sd_unemployment_mean,sd_spread_mean
+Crisis,0.313,0.527,1.118,28.622,5.732,382.014
+Pre-Crisis,0.396,0.365,0.622,26.503,2.474,27.399
+Recovery,0.326,0.599,1.318,35.24,7.704,247.021

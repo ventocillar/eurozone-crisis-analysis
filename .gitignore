@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# R
+.Rhistory
+.Rapp.history
+.RData
+.Rproj.user/
+
+# Node / SvelteKit
+thesis-dashboard/node_modules/
+thesis-dashboard/.svelte-kit/
+thesis-dashboard/build/
+
+# IDE
+.vscode/
+.idea/

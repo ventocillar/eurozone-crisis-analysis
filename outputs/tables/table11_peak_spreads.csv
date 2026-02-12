@@ -1,0 +1,10 @@
+country,country_group,date,spread_bps,bond_yield,debt_gdp,deficit_gdp,unemployment
+Greece,GIIPS,2012-01-01,3298.67,34.82,141.4,-9.3,22.6
+Portugal,GIIPS,2012-01-01,1139,13.22,118.2,-7.3,14.8
+Ireland,GIIPS,2011-07-01,791.67,10.18,109.4,-26,14.8
+Spain,GIIPS,2012-07-01,507.23,6.43,78.7,-4.8,25
+Italy,GIIPS,2011-10-01,468.03,6.61,119.1,-0.8,8.9
+France,Core,2012-04-01,135,2.77,92.6,-5.7,10
+Austria,Core,2012-01-01,121.31,3.05,84.3,-5,4.4
+Netherlands,Core,2009-01-01,66.6,3.74,57.1,-2.4,3.1
+Germany,Core,2008-01-01,0,3.93,64,-0.9,7.6

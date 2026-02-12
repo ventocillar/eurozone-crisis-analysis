@@ -1,0 +1,13 @@
+date,event,type,country_affected
+2008-09-15,Lehman Brothers Collapse,Financial Crisis,All
+2009-10-20,Greek Deficit Revelation,Crisis Start,Greece
+2010-05-02,First Greek Bailout,Policy Response,Greece
+2010-11-28,Irish Bailout,Policy Response,Ireland
+2011-04-07,Portuguese Bailout,Policy Response,Portugal
+2011-07-21,Second Greek Bailout Agreement,Policy Response,Greece
+2012-06-09,Spanish Bank Bailout,Policy Response,Spain
+2012-07-26,Draghi Speech,Policy Response,All
+2012-09-06,ECB OMT Announcement,Policy Response,All
+2013-03-16,Cyprus Bailout,Policy Response,Cyprus
+2015-07-05,Greek Referendum,Political Event,Greece
+2015-08-14,Third Greek Bailout,Policy Response,Greece

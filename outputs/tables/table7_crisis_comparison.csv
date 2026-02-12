@@ -1,0 +1,5 @@
+crisis_label,country_group,n_obs,debt_gdp,deficit_gdp,gdp_growth,unemployment,spread_bps
+Crisis (2009-2012),Core,64,76.07,-4.19,0.19,6.2,42.94
+Crisis (2009-2012),GIIPS,80,104.04,-10.37,-2.33,14.33,514.49
+Non-Crisis,Core,64,75.94,-1.78,0.77,6.49,26.53
+Non-Crisis,GIIPS,80,115.51,-5.4,1.55,15.19,256.34

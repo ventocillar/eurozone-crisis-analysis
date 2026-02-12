@@ -1,0 +1,212 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import * as d3 from 'd3';
+	import { COLORS } from '$lib/utils/data';
+
+	interface Series {
+		label: string;
+		color: string;
+		data: { date: Date; value: number }[];
+	}
+
+	let {
+		series,
+		title = '',
+		yLabel = '',
+		yFormat = (v: number) => String(Math.round(v)),
+		events = [] as { date: Date; label: string; color?: string }[],
+		height = 400,
+		showLegend = true
+	}: {
+		series: Series[];
+		title?: string;
+		yLabel?: string;
+		yFormat?: (v: number) => string;
+		events?: { date: Date; label: string; color?: string }[];
+		height?: number;
+		showLegend?: boolean;
+	} = $props();
+
+	let container: HTMLDivElement;
+
+	function draw() {
+		if (!container || !series.length) return;
+		d3.select(container).selectAll('*').remove();
+
+		const margin = { top: 20, right: 20, bottom: 40, left: 65 };
+		const width = container.clientWidth;
+		const innerW = width - margin.left - margin.right;
+		const innerH = height - margin.top - margin.bottom;
+
+		const svg = d3
+			.select(container)
+			.append('svg')
+			.attr('width', width)
+			.attr('height', height);
+
+		const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+		const allDates = series.flatMap((s) => s.data.map((d) => d.date));
+		const allValues = series.flatMap((s) => s.data.map((d) => d.value));
+
+		const x = d3
+			.scaleTime()
+			.domain(d3.extent(allDates) as [Date, Date])
+			.range([0, innerW]);
+
+		const y = d3
+			.scaleLinear()
+			.domain([Math.min(0, d3.min(allValues) ?? 0), (d3.max(allValues) ?? 0) * 1.05])
+			.nice()
+			.range([innerH, 0]);
+
+		// Grid
+		g.append('g')
+			.attr('class', 'grid')
+			.call(
+				d3
+					.axisLeft(y)
+					.tickSize(-innerW)
+					.tickFormat(() => '')
+			)
+			.selectAll('line')
+			.attr('stroke', COLORS.surfaceLight)
+			.attr('stroke-opacity', 0.3);
+		g.selectAll('.grid .domain').remove();
+
+		// Axes
+		g.append('g')
+			.attr('transform', `translate(0,${innerH})`)
+			.call(d3.axisBottom(x).ticks(8))
+			.selectAll('text')
+			.attr('fill', COLORS.textMuted)
+			.style('font-size', '11px');
+
+		g.append('g')
+			.call(d3.axisLeft(y).ticks(6).tickFormat(yFormat as any))
+			.selectAll('text')
+			.attr('fill', COLORS.textMuted)
+			.style('font-size', '11px');
+
+		g.selectAll('.domain').attr('stroke', COLORS.surfaceLight);
+		g.selectAll('.tick line').attr('stroke', COLORS.surfaceLight);
+
+		// Y label
+		if (yLabel) {
+			g.append('text')
+				.attr('transform', 'rotate(-90)')
+				.attr('y', -50)
+				.attr('x', -innerH / 2)
+				.attr('text-anchor', 'middle')
+				.attr('fill', COLORS.textMuted)
+				.style('font-size', '12px')
+				.text(yLabel);
+		}
+
+		// Event lines
+		for (const evt of events) {
+			const ex = x(evt.date);
+			if (ex >= 0 && ex <= innerW) {
+				g.append('line')
+					.attr('x1', ex)
+					.attr('x2', ex)
+					.attr('y1', 0)
+					.attr('y2', innerH)
+					.attr('stroke', evt.color ?? '#EF4444')
+					.attr('stroke-dasharray', '4,3')
+					.attr('stroke-opacity', 0.6);
+
+				g.append('text')
+					.attr('x', ex + 4)
+					.attr('y', 14)
+					.attr('fill', evt.color ?? '#EF4444')
+					.style('font-size', '10px')
+					.text(evt.label);
+			}
+		}
+
+		// Lines
+		const line = d3
+			.line<{ date: Date; value: number }>()
+			.x((d) => x(d.date))
+			.y((d) => y(d.value))
+			.defined((d) => d.value != null && !isNaN(d.value));
+
+		for (const s of series) {
+			g.append('path')
+				.datum(s.data)
+				.attr('fill', 'none')
+				.attr('stroke', s.color)
+				.attr('stroke-width', 2)
+				.attr('d', line);
+		}
+
+		// Tooltip
+		const tooltip = d3
+			.select(container)
+			.append('div')
+			.style('position', 'absolute')
+			.style('display', 'none')
+			.style('background', COLORS.surface)
+			.style('border', `1px solid ${COLORS.surfaceLight}`)
+			.style('border-radius', '6px')
+			.style('padding', '8px 12px')
+			.style('font-size', '12px')
+			.style('color', COLORS.text)
+			.style('pointer-events', 'none')
+			.style('z-index', '10');
+
+		svg
+			.append('rect')
+			.attr('width', width)
+			.attr('height', height)
+			.attr('fill', 'transparent')
+			.on('mousemove', function (event) {
+				const [mx] = d3.pointer(event);
+				const dateAtMouse = x.invert(mx - margin.left);
+				let html = `<strong>${d3.timeFormat('%Y Q%q')(dateAtMouse)}</strong><br/>`;
+				for (const s of series) {
+					const bisect = d3.bisector((d: { date: Date }) => d.date).left;
+					const i = bisect(s.data, dateAtMouse);
+					const d = s.data[Math.min(i, s.data.length - 1)];
+					if (d) {
+						html += `<span style="color:${s.color}">${s.label}: ${yFormat(d.value)}</span><br/>`;
+					}
+				}
+				tooltip
+					.html(html)
+					.style('display', 'block')
+					.style('left', `${event.offsetX + 15}px`)
+					.style('top', `${event.offsetY - 10}px`);
+			})
+			.on('mouseleave', () => tooltip.style('display', 'none'));
+	}
+
+	onMount(() => {
+		draw();
+		const ro = new ResizeObserver(() => draw());
+		ro.observe(container);
+		return () => ro.disconnect();
+	});
+
+	$effect(() => {
+		if (series) draw();
+	});
+</script>
+
+<div class="relative">
+	{#if title}
+		<h3 class="mb-2 text-sm font-semibold text-slate-300">{title}</h3>
+	{/if}
+	{#if showLegend && series.length > 1}
+		<div class="mb-2 flex flex-wrap gap-3 text-xs">
+			{#each series as s}
+				<span class="flex items-center gap-1.5">
+					<span class="inline-block h-2.5 w-4 rounded-sm" style="background:{s.color}"></span>
+					{s.label}
+				</span>
+			{/each}
+		</div>
+	{/if}
+	<div bind:this={container} class="relative w-full" style="height:{height}px"></div>
+</div>

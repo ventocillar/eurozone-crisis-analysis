@@ -1,0 +1,5 @@
+term,estimate,std.error,statistic,p.value
+post_omt_immediate,-83.18,109.47,-0.76,0.45
+post_omt_medium,-508.87,73.16,-6.96,0
+debt_gdp,4.88,2.04,2.39,0.02
+unemployment,52.02,8.97,5.8,0
