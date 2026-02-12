@@ -27,12 +27,12 @@
 	let container: HTMLDivElement;
 
 	const MODEL_COLORS: Record<string, string> = {
-		Baseline: '#10B981',
-		Macro: '#3B82F6',
-		Full: '#8B5CF6',
-		'Crisis Interactions': '#F59E0B',
-		'First-Difference': '#EF4444',
-		'Driscoll-Kraay': '#EC4899'
+		Baseline: '#7f793c',
+		Macro: '#184948',
+		Full: '#944839',
+		'Crisis Interactions': '#c08e39',
+		'First-Difference': '#6b4f3a',
+		'Driscoll-Kraay': '#8b8374'
 	};
 
 	function draw() {
@@ -102,7 +102,7 @@
 					.attr('y1', yPos)
 					.attr('y2', yPos)
 					.attr('stroke', color)
-					.attr('stroke-width', 1.5);
+					.attr('stroke-width', 2);
 
 				// CI caps
 				for (const val of [d.ci_lower, d.ci_upper]) {
@@ -112,14 +112,14 @@
 						.attr('y1', yPos - 3)
 						.attr('y2', yPos + 3)
 						.attr('stroke', color)
-						.attr('stroke-width', 1.5);
+						.attr('stroke-width', 2);
 				}
 
 				// Point estimate
 				g.append('circle')
 					.attr('cx', x(d.estimate))
 					.attr('cy', yPos)
-					.attr('r', 4.5)
+					.attr('r', 5)
 					.attr('fill', d.significant ? color : 'none')
 					.attr('stroke', color)
 					.attr('stroke-width', 2);
@@ -131,6 +131,7 @@
 			.call(d3.axisLeft(yOuter).tickSize(0))
 			.selectAll('text')
 			.attr('fill', COLORS.text)
+			.style('font-family', 'var(--font-body)')
 			.style('font-size', '11px');
 
 		g.select('.domain').attr('stroke', COLORS.surfaceLight);
@@ -141,6 +142,7 @@
 			.call(d3.axisBottom(x).ticks(6))
 			.selectAll('text')
 			.attr('fill', COLORS.textMuted)
+			.style('font-family', 'var(--font-body)')
 			.style('font-size', '11px');
 
 		g.selectAll('.tick line').attr('stroke', COLORS.surfaceLight);
@@ -167,6 +169,7 @@
 				.attr('y', 0)
 				.attr('dy', '0.35em')
 				.attr('fill', COLORS.textMuted)
+				.style('font-family', 'var(--font-body)')
 				.style('font-size', '10px')
 				.text(model);
 		});
@@ -186,8 +189,8 @@
 
 <div>
 	{#if title}
-		<h3 class="mb-2 text-sm font-semibold text-slate-300">{title}</h3>
+		<h3 class="mb-2 text-sm font-semibold" style="color: var(--text-muted); font-family: var(--font-display)">{title}</h3>
 	{/if}
 	<div bind:this={container} class="w-full" style="height:{height}px"></div>
-	<p class="mt-1 text-[10px] text-slate-500">Filled = significant (p&lt;0.05); hollow = not significant. Whiskers = 95% CI.</p>
+	<p class="mt-1 text-[10px]" style="color: var(--text-dim)">Filled = significant (p&lt;0.05); hollow = not significant. Whiskers = 95% CI.</p>
 </div>

@@ -36,11 +36,11 @@
 <div class="space-y-8">
 	<!-- Hero -->
 	<div class="text-center">
-		<h1 class="text-3xl font-bold text-white">Of Rules and (Dis)order</h1>
-		<p class="mt-2 text-lg text-slate-400">
+		<h1 class="text-3xl font-bold" style="color: var(--text-primary); font-family: var(--font-display)">Of Rules and (Dis)order</h1>
+		<p class="mt-2 text-lg" style="color: var(--text-muted)">
 			How Quantitative Analysis Maps to the Thesis
 		</p>
-		<p class="mx-auto mt-4 max-w-2xl text-sm text-slate-500 leading-relaxed">
+		<p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed" style="color: var(--text-dim)">
 			This dashboard maps panel regressions, contagion analysis, PCA, Granger causality, event
 			studies, structural break tests, convergence tests, and cluster analysis across 9 Eurozone
 			countries (2008–2015) to the qualitative arguments in the master's thesis on ordoliberalism,
@@ -50,7 +50,7 @@
 
 	{#if !loaded}
 		<div class="flex justify-center py-20">
-			<div class="animate-pulse text-slate-500">Loading data...</div>
+			<div class="animate-pulse" style="color: var(--text-dim)">Loading data...</div>
 		</div>
 	{:else if stats}
 		<!-- Key metrics -->
@@ -83,70 +83,70 @@
 
 		<!-- Sections overview -->
 		<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-			<a href="/confirms" class="group rounded-lg border border-slate-700 bg-slate-800/40 p-5 transition hover:border-emerald-600/50 hover:bg-slate-800/70">
+			<a href="/confirms" class="nav-card group rounded-lg p-5 transition-all">
 				<div class="flex items-center gap-2">
-					<span class="rounded-full bg-emerald-600 px-2 py-0.5 text-xs font-bold">1</span>
-					<h2 class="font-semibold text-white group-hover:text-emerald-400">What the Data Confirms</h2>
+					<span class="rounded-full px-2 py-0.5 text-xs font-bold" style="background: var(--color-positive); color: var(--text-primary)">1</span>
+					<h2 class="font-semibold" style="color: var(--text-primary); font-family: var(--font-display)">What the Data Confirms</h2>
 				</div>
-				<p class="mt-2 text-xs text-slate-400 leading-relaxed">
+				<p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted)">
 					GIIPS-Core divergence, Germany-Greece extremes, austerity effects, OMT turning point, and contagion — 4 of 5 confirmed at p&lt;0.001.
 				</p>
-				<ul class="mt-3 space-y-1 text-xs text-slate-500">
+				<ul class="mt-3 space-y-1 text-xs" style="color: var(--text-dim)">
 					<li>5 subsections with interactive charts</li>
 					<li>T-tests, cluster analysis, Granger causality</li>
 				</ul>
 			</a>
 
-			<a href="/supplements" class="group rounded-lg border border-slate-700 bg-slate-800/40 p-5 transition hover:border-blue-600/50 hover:bg-slate-800/70">
+			<a href="/supplements" class="nav-card group rounded-lg p-5 transition-all">
 				<div class="flex items-center gap-2">
-					<span class="rounded-full bg-blue-600 px-2 py-0.5 text-xs font-bold">2</span>
-					<h2 class="font-semibold text-white group-hover:text-blue-400">What the Data Supplements</h2>
+					<span class="rounded-full px-2 py-0.5 text-xs font-bold" style="background: var(--color-info); color: var(--text-primary)">2</span>
+					<h2 class="font-semibold" style="color: var(--text-primary); font-family: var(--font-display)">What the Data Supplements</h2>
 				</div>
-				<p class="mt-2 text-xs text-slate-400 leading-relaxed">
+				<p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted)">
 					Unemployment dominates debt as crisis driver. Non-stationarity shows permanent effects. No convergence found. Ireland as outlier.
 				</p>
-				<ul class="mt-3 space-y-1 text-xs text-slate-500">
+				<ul class="mt-3 space-y-1 text-xs" style="color: var(--text-dim)">
 					<li>4 new evidence streams</li>
 					<li>Unit root tests, sigma/beta convergence</li>
 				</ul>
 			</a>
 
-			<a href="/challenges" class="group rounded-lg border border-slate-700 bg-slate-800/40 p-5 transition hover:border-amber-600/50 hover:bg-slate-800/70">
+			<a href="/challenges" class="nav-card group rounded-lg p-5 transition-all">
 				<div class="flex items-center gap-2">
-					<span class="rounded-full bg-amber-600 px-2 py-0.5 text-xs font-bold">3</span>
-					<h2 class="font-semibold text-white group-hover:text-amber-400">What the Data Challenges</h2>
+					<span class="rounded-full px-2 py-0.5 text-xs font-bold" style="background: var(--accent-primary); color: var(--bg-primary)">3</span>
+					<h2 class="font-semibold" style="color: var(--text-primary); font-family: var(--font-display)">What the Data Challenges</h2>
 				</div>
-				<p class="mt-2 text-xs text-slate-400 leading-relaxed">
+				<p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted)">
 					Debt-to-GDP coefficient is unstable. Contagion was selective (Greece to Spain only). Correlations fell during crisis.
 				</p>
-				<ul class="mt-3 space-y-1 text-xs text-slate-500">
+				<ul class="mt-3 space-y-1 text-xs" style="color: var(--text-dim)">
 					<li>3 productive challenges</li>
 					<li>Strengthens the thesis critique</li>
 				</ul>
 			</a>
 
-			<a href="/extensions" class="group rounded-lg border border-slate-700 bg-slate-800/40 p-5 transition hover:border-purple-600/50 hover:bg-slate-800/70">
+			<a href="/extensions" class="nav-card group rounded-lg p-5 transition-all">
 				<div class="flex items-center gap-2">
-					<span class="rounded-full bg-purple-600 px-2 py-0.5 text-xs font-bold">4</span>
-					<h2 class="font-semibold text-white group-hover:text-purple-400">What Could Be Added</h2>
+					<span class="rounded-full px-2 py-0.5 text-xs font-bold" style="background: var(--color-negative); color: var(--text-primary)">4</span>
+					<h2 class="font-semibold" style="color: var(--text-primary); font-family: var(--font-display)">What Could Be Added</h2>
 				</div>
-				<p class="mt-2 text-xs text-slate-400 leading-relaxed">
+				<p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted)">
 					Austerity-to-populism link, OCA business cycle sync, synthetic counterfactual, multiple breaks, non-linear debt.
 				</p>
-				<ul class="mt-3 space-y-1 text-xs text-slate-500">
+				<ul class="mt-3 space-y-1 text-xs" style="color: var(--text-dim)">
 					<li>5 feasible extensions</li>
 					<li>Maps to thesis assumptions 4 & 6</li>
 				</ul>
 			</a>
 
-			<a href="/synthesis" class="group rounded-lg border border-slate-700 bg-slate-800/40 p-5 transition hover:border-amber-500/50 hover:bg-slate-800/70 md:col-span-2 lg:col-span-2">
+			<a href="/synthesis" class="nav-card group rounded-lg p-5 transition-all md:col-span-2 lg:col-span-2">
 				<div class="flex items-center gap-2">
-					<span class="rounded-full bg-amber-500 px-2 py-0.5 text-xs font-bold">5</span>
-					<h2 class="font-semibold text-white group-hover:text-amber-300">Synthesis</h2>
+					<span class="rounded-full px-2 py-0.5 text-xs font-bold" style="background: var(--accent-primary); color: var(--bg-primary)">5</span>
+					<h2 class="font-semibold" style="color: var(--text-primary); font-family: var(--font-display)">Synthesis</h2>
 				</div>
-				<p class="mt-2 text-xs text-slate-400 leading-relaxed">
+				<p class="mt-2 text-xs leading-relaxed" style="color: var(--text-muted)">
 					Summary tables of strong confirmations and productive challenges. The key takeaway:
-					<strong class="text-amber-300">unemployment, not debt, is the dominant market signal</strong> —
+					<strong style="color: var(--accent-primary)">unemployment, not debt, is the dominant market signal</strong> —
 					reframing the ordoliberal crisis management critique.
 				</p>
 			</a>

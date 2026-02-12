@@ -13,14 +13,14 @@
 	let regCoefs = $derived($regressionCoefficients);
 
 	const crisisEvents = [
-		{ date: new Date('2010-05-02'), label: 'Greek Bailout', color: '#EF4444' },
-		{ date: new Date('2012-07-26'), label: 'OMT', color: '#10B981' }
+		{ date: new Date('2010-05-02'), label: 'Greek Bailout', color: '#944839' },
+		{ date: new Date('2012-07-26'), label: 'OMT', color: '#7f793c' }
 	];
 
 	// 3.1 Debt coefficient instability — CSV-driven
 	let debtCoeffBars = $derived.by(() => [
 		{ label: 'Model 1 (baseline)', value: getCoef(regCoefs, 'debt_gdp', 'Baseline')?.estimate ?? 4.93, color: COLORS.positive },
-		{ label: 'Model 2 (+ unemp)', value: getCoef(regCoefs, 'debt_gdp', 'Macro')?.estimate ?? -2.28, color: '#94a3b8' },
+		{ label: 'Model 2 (+ unemp)', value: getCoef(regCoefs, 'debt_gdp', 'Macro')?.estimate ?? -2.28, color: '#8b8374' },
 		{ label: 'Model 4 (crisis)', value: getCoef(regCoefs, 'debt_gdp', 'Crisis Interactions')?.estimate ?? -5.89, color: COLORS.negative },
 		{ label: 'First-Difference', value: getCoef(regCoefs, 'debt_gdp', 'First-Difference')?.estimate ?? 0, color: COLORS.warning }
 	]);
@@ -118,19 +118,19 @@
 
 <div class="space-y-10">
 	<div>
-		<h1 class="text-2xl font-bold text-amber-400">3. What the Data Challenges</h1>
-		<p class="mt-2 text-sm text-slate-400">
+		<h1 class="text-2xl font-bold" style="color: var(--accent-primary); font-family: var(--font-display)">3. What the Data Challenges</h1>
+		<p class="mt-2 text-sm" style="color: var(--text-muted)">
 			Three areas where the data complicates or nuances the thesis's arguments — all of which
 			<em>strengthen</em> the central critique of ordoliberal crisis management.
 		</p>
 	</div>
 
 	{#if !loaded}
-		<div class="py-20 text-center text-slate-500">Loading data...</div>
+		<div class="py-20 text-center" style="color: var(--text-dim)">Loading data...</div>
 	{:else}
 		<!-- 3.1 Debt Ambiguity -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				3.1 Debt-to-GDP as Crisis Cause — Ambiguous Evidence
 			</h2>
 			<ThesisClaim
@@ -147,7 +147,7 @@
 			</div>
 
 			{#if debtCoefPlotData.length}
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<CoefficientPlot
 						data={debtCoefPlotData}
 						title="Debt-to-GDP Coefficient Across Model Specifications"
@@ -155,7 +155,7 @@
 					/>
 				</div>
 			{:else}
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<BarChart
 						bars={debtCoeffBars}
 						title="Debt-to-GDP Coefficient Across Model Specifications"
@@ -166,18 +166,18 @@
 				</div>
 			{/if}
 
-			<div class="rounded-md bg-amber-900/20 border border-amber-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-amber-400">Interpretation:</strong> Once you control for unemployment and GDP
+			<div class="rounded-md p-4 text-sm" style="background: rgba(192,142,57,0.1); border: 1px solid rgba(192,142,57,0.25); color: var(--text-muted)">
+				<strong style="color: var(--accent-primary)">Interpretation:</strong> Once you control for unemployment and GDP
 				growth, debt <em>per se</em> does not drive spreads upward. The negative sign likely reflects reverse
 				causality: countries with rising spreads saw debt explode due to recession + bailout costs. This
-				challenges the ordoliberal framing — but actually <strong class="text-amber-300">strengthens</strong>
+				challenges the ordoliberal framing — but actually <strong style="color: var(--accent-secondary)">strengthens</strong>
 				your critique of German crisis management.
 			</div>
 		</section>
 
 		<!-- 3.2 Selective Contagion -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				3.2 Selective Contagion vs. Universal Contagion
 			</h2>
 			<ThesisClaim
@@ -186,7 +186,7 @@
 				status="challenged"
 			/>
 
-			<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+			<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 				<BarChart
 					bars={grangerBars}
 					title="Granger Causality p-values (Greece → target)"
@@ -197,13 +197,13 @@
 				/>
 			</div>
 
-			<div class="flex items-center gap-2 text-xs text-slate-500">
+			<div class="flex items-center gap-2 text-xs" style="color: var(--text-dim)">
 				<span class="inline-block h-3 w-6 rounded" style="background:{COLORS.positive}"></span> p&lt;0.05 (significant)
 				<span class="ml-2 inline-block h-3 w-6 rounded" style="background:{COLORS.negative}"></span> p&gt;0.05 (not significant)
 			</div>
 
-			<div class="rounded-md bg-amber-900/20 border border-amber-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-amber-400">Reconciliation:</strong> High bilateral correlations (Italy-Spain 0.956)
+			<div class="rounded-md p-4 text-sm" style="background: rgba(192,142,57,0.1); border: 1px solid rgba(192,142,57,0.25); color: var(--text-muted)">
+				<strong style="color: var(--accent-primary)">Reconciliation:</strong> High bilateral correlations (Italy-Spain 0.956)
 				and the dominant first PCA component (~75%) suggest a <em>common factor</em> drove all spreads simultaneously —
 				but that factor was not Greek contagion specifically. It could have been ECB policy, global risk aversion,
 				or Eurozone breakup fears. This is more nuanced than simple Greece-to-periphery contagion.
@@ -212,7 +212,7 @@
 
 		<!-- 3.3 Correlation Decline -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				3.3 Correlation Decline During Crisis
 			</h2>
 			<ThesisClaim
@@ -228,7 +228,7 @@
 			</div>
 
 			{#if rollingCorSeries.length}
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<LineChart
 						series={rollingCorSeries}
 						title="Rolling Average GIIPS Spread Correlation"
@@ -240,8 +240,8 @@
 				</div>
 			{/if}
 
-			<div class="rounded-md bg-emerald-900/20 border border-emerald-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-emerald-400">Reconciliation:</strong> This is consistent with "wake-up call"
+			<div class="rounded-md p-4 text-sm" style="background: rgba(127,121,60,0.1); border: 1px solid rgba(127,121,60,0.25); color: var(--text-muted)">
+				<strong style="color: var(--color-positive)">Reconciliation:</strong> This is consistent with "wake-up call"
 				contagion (Section 1.1) — markets didn't panic blindly but reassessed each country individually
 				based on fundamentals. The PCA common factor captures shared vulnerability, while the declining
 				correlation captures the differentiated response. This is a <em>more sophisticated</em> story

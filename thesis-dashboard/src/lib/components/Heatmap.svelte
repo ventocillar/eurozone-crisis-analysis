@@ -14,7 +14,7 @@
 		title = '',
 		rows,
 		cols,
-		colorRange = ['#3498DB', '#ffffff', '#E74C3C'],
+		colorRange = ['#184948', '#f4efe8', '#944839'],
 		domain = [-1, 0, 1],
 		height = 400,
 		valueFormat = (v: number) => v.toFixed(2)
@@ -70,7 +70,8 @@
 			.attr('y', (d) => y(d.row)! + y.bandwidth() / 2)
 			.attr('dy', '0.35em')
 			.attr('text-anchor', 'middle')
-			.attr('fill', (d) => (Math.abs(d.value) > 0.6 ? '#fff' : '#1e293b'))
+			.attr('fill', (d) => (Math.abs(d.value) > 0.6 ? '#f4efe8' : '#0a1514'))
+			.style('font-family', 'var(--font-mono)')
 			.style('font-size', '11px')
 			.text((d) => valueFormat(d.value));
 
@@ -83,6 +84,7 @@
 			.attr('y', -8)
 			.attr('text-anchor', 'middle')
 			.attr('fill', COLORS.textMuted)
+			.style('font-family', 'var(--font-body)')
 			.style('font-size', '11px')
 			.text((d) => d);
 
@@ -95,6 +97,7 @@
 			.attr('dy', '0.35em')
 			.attr('text-anchor', 'end')
 			.attr('fill', COLORS.textMuted)
+			.style('font-family', 'var(--font-body)')
 			.style('font-size', '11px')
 			.text((d) => d);
 	}
@@ -113,7 +116,7 @@
 
 <div>
 	{#if title}
-		<h3 class="mb-2 text-sm font-semibold text-slate-300">{title}</h3>
+		<h3 class="mb-2 text-sm font-semibold" style="color: var(--text-muted); font-family: var(--font-display)">{title}</h3>
 	{/if}
 	<div bind:this={container} class="w-full" style="height:{height}px"></div>
 </div>

@@ -69,7 +69,9 @@
 				.attr('width', (d) => Math.abs(x(d.value) - x(0)))
 				.attr('height', y.bandwidth())
 				.attr('fill', (d) => d.color)
-				.attr('rx', 3);
+				.attr('rx', 4)
+				.attr('stroke', (d) => d3.color(d.color)?.darker(0.5)?.formatHex() ?? d.color)
+				.attr('stroke-width', 1);
 
 			g.selectAll('.bar-label')
 				.data(bars)
@@ -79,13 +81,16 @@
 				.attr('dy', '0.35em')
 				.attr('text-anchor', (d) => (d.value >= 0 ? 'start' : 'end'))
 				.attr('fill', COLORS.textMuted)
+				.style('font-family', 'var(--font-body)')
 				.style('font-size', '11px')
+				.style('font-weight', '500')
 				.text((d) => yFormat(d.value));
 
 			g.append('g')
 				.call(d3.axisLeft(y))
 				.selectAll('text')
 				.attr('fill', COLORS.text)
+				.style('font-family', 'var(--font-body)')
 				.style('font-size', '11px');
 
 			g.append('g')
@@ -93,6 +98,7 @@
 				.call(d3.axisBottom(x).ticks(5).tickFormat(yFormat as any))
 				.selectAll('text')
 				.attr('fill', COLORS.textMuted)
+				.style('font-family', 'var(--font-body)')
 				.style('font-size', '11px');
 
 			// Zero line
@@ -103,7 +109,8 @@
 					.attr('y1', 0)
 					.attr('y2', innerH)
 					.attr('stroke', COLORS.textMuted)
-					.attr('stroke-dasharray', '3,2');
+					.attr('stroke-width', 1.5)
+					.attr('stroke-dasharray', '4,4');
 			}
 		} else {
 			const x = d3
@@ -129,13 +136,16 @@
 				.attr('width', x.bandwidth())
 				.attr('height', (d) => Math.abs(y(0) - y(d.value)))
 				.attr('fill', (d) => d.color)
-				.attr('rx', 3);
+				.attr('rx', 4)
+				.attr('stroke', (d) => d3.color(d.color)?.darker(0.5)?.formatHex() ?? d.color)
+				.attr('stroke-width', 1);
 
 			g.append('g')
 				.attr('transform', `translate(0,${innerH})`)
 				.call(d3.axisBottom(x))
 				.selectAll('text')
 				.attr('fill', COLORS.text)
+				.style('font-family', 'var(--font-body)')
 				.style('font-size', '11px')
 				.attr('transform', 'rotate(-25)')
 				.attr('text-anchor', 'end');
@@ -144,6 +154,7 @@
 				.call(d3.axisLeft(y).ticks(5).tickFormat(yFormat as any))
 				.selectAll('text')
 				.attr('fill', COLORS.textMuted)
+				.style('font-family', 'var(--font-body)')
 				.style('font-size', '11px');
 
 			// Zero line
@@ -154,7 +165,8 @@
 					.attr('y1', y(0))
 					.attr('y2', y(0))
 					.attr('stroke', COLORS.textMuted)
-					.attr('stroke-dasharray', '3,2');
+					.attr('stroke-width', 1.5)
+					.attr('stroke-dasharray', '4,4');
 			}
 		}
 
@@ -176,7 +188,7 @@
 
 <div>
 	{#if title}
-		<h3 class="mb-2 text-sm font-semibold text-slate-300">{title}</h3>
+		<h3 class="mb-2 text-sm font-semibold" style="color: var(--text-muted); font-family: var(--font-display)">{title}</h3>
 	{/if}
 	<div bind:this={container} class="w-full" style="height:{height}px"></div>
 </div>

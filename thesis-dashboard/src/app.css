@@ -1,1 +1,76 @@
 @import 'tailwindcss';
+
+:root {
+	/* === Nattier Palette === */
+	--nattier-chocolate: #52271c;
+	--nattier-terracotta: #944839;
+	--nattier-ochre: #c08e39;
+	--nattier-olive: #7f793c;
+	--nattier-dark-olive: #565c33;
+	--nattier-teal: #184948;
+	--nattier-dark-teal: #022a2a;
+
+	/* === Backgrounds === */
+	--bg-primary: #0a1514;
+	--bg-surface: #0f2322;
+	--bg-card: rgba(24, 73, 72, 0.35);
+
+	/* === Text === */
+	--text-primary: #f4efe8;
+	--text-muted: #c9bfb3;
+	--text-dim: #8b8374;
+
+	/* === Accents === */
+	--accent-primary: #c08e39;
+	--accent-secondary: #d4a54a;
+	--color-negative: #944839;
+	--color-positive: #7f793c;
+	--color-info: #184948;
+	--color-warning: #c08e39;
+
+	/* === Borders === */
+	--border-default: rgba(192, 142, 57, 0.2);
+	--border-subtle: rgba(148, 72, 57, 0.15);
+	--border-accent: rgba(192, 142, 57, 0.4);
+
+	/* === Typography === */
+	--font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+	--font-body: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body {
+	font-family: var(--font-body);
+	background: var(--bg-primary);
+	color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-display);
+}
+
+/* Navigation cards */
+.nav-card {
+	background: var(--bg-card);
+	border: 1px solid var(--border-default);
+}
+.nav-card:hover {
+	border-color: var(--border-accent);
+	background: rgba(24, 73, 72, 0.45);
+}
+
+/* Refined scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-track {
+	background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+	background: rgba(192, 142, 57, 0.25);
+	border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(192, 142, 57, 0.4);
+}

@@ -43,26 +43,26 @@ export const GIIPS = ['Greece', 'Ireland', 'Italy', 'Portugal', 'Spain'];
 export const CORE = ['Germany', 'France', 'Netherlands', 'Austria'];
 
 export const COLORS = {
-	giips: '#E74C3C',
-	core: '#3498DB',
-	germany: '#2C3E50',
-	greece: '#E74C3C',
-	ireland: '#27AE60',
-	italy: '#F39C12',
-	portugal: '#8E44AD',
-	spain: '#E67E22',
-	france: '#2980B9',
-	netherlands: '#1ABC9C',
-	austria: '#7F8C8D',
-	accent: '#9B59B6',
-	bg: '#0f172a',
-	surface: '#1e293b',
-	surfaceLight: '#334155',
-	text: '#e2e8f0',
-	textMuted: '#94a3b8',
-	positive: '#10B981',
-	negative: '#EF4444',
-	warning: '#F59E0B'
+	giips: '#944839',
+	core: '#184948',
+	germany: '#022a2a',
+	greece: '#944839',
+	ireland: '#7f793c',
+	italy: '#c08e39',
+	portugal: '#a8664f',
+	spain: '#b57845',
+	france: '#184948',
+	netherlands: '#2d6765',
+	austria: '#4a5d52',
+	accent: '#c08e39',
+	bg: '#0a1514',
+	surface: '#0f2322',
+	surfaceLight: '#184948',
+	text: '#f4efe8',
+	textMuted: '#c9bfb3',
+	positive: '#7f793c',
+	negative: '#944839',
+	warning: '#c08e39'
 };
 
 export const COUNTRY_COLORS: Record<string, string> = {

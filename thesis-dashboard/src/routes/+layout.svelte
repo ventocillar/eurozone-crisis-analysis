@@ -29,19 +29,19 @@
 	});
 </script>
 
-<div class="min-h-screen bg-slate-900 text-slate-200">
-	<nav class="sticky top-0 z-50 border-b border-slate-700 bg-slate-900/95 backdrop-blur">
+<div class="min-h-screen" style="background: var(--bg-primary); color: var(--text-primary)">
+	<nav class="sticky top-0 z-50" style="background: rgba(10,21,20,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle)">
 		<div class="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 py-3">
-			<span class="mr-4 shrink-0 text-sm font-bold tracking-wide text-amber-400 uppercase"
+			<span class="mr-4 shrink-0 text-sm font-bold tracking-wide uppercase" style="color: var(--accent-primary); font-family: var(--font-display)"
 				>Thesis Dashboard</span
 			>
 			{#each nav as { href, label }}
 				<a
 					{href}
-					class="shrink-0 rounded-md px-3 py-1.5 text-sm transition-colors {page.url.pathname ===
-					href
-						? 'bg-amber-500/20 text-amber-300 font-medium'
-						: 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'}"
+					class="shrink-0 rounded-md px-3 py-1.5 text-sm transition-colors"
+					style="{page.url.pathname === href
+						? 'background: rgba(192,142,57,0.15); color: var(--accent-primary); font-weight: 500'
+						: 'color: var(--text-muted)'}"
 				>
 					{label}
 				</a>
@@ -53,8 +53,8 @@
 		{@render children()}
 	</main>
 
-	<footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-		<p>"Of Rules and (Dis)order" — Quantitative Analysis Dashboard</p>
+	<footer class="py-6 text-center text-xs" style="border-top: 1px solid var(--border-subtle); color: var(--text-dim)">
+		<p style="font-family: var(--font-display); font-style: italic">"Of Rules and (Dis)order" — Quantitative Analysis Dashboard</p>
 		<p class="mt-1">Data: 9 Eurozone countries, 2008 Q1 – 2015 Q4</p>
 	</footer>
 </div>

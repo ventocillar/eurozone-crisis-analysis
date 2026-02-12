@@ -30,9 +30,9 @@
 	});
 
 	const crisisEvents = [
-		{ date: new Date('2010-05-02'), label: 'Greek Bailout', color: '#EF4444' },
-		{ date: new Date('2012-07-26'), label: 'Draghi "whatever it takes"', color: '#10B981' },
-		{ date: new Date('2012-09-06'), label: 'OMT', color: '#10B981' }
+		{ date: new Date('2010-05-02'), label: 'Greek Bailout', color: '#944839' },
+		{ date: new Date('2012-07-26'), label: 'Draghi "whatever it takes"', color: '#7f793c' },
+		{ date: new Date('2012-09-06'), label: 'OMT', color: '#7f793c' }
 	];
 
 	// 1.1 GIIPS vs Core spread series
@@ -154,18 +154,18 @@
 
 <div class="space-y-10">
 	<div>
-		<h1 class="text-2xl font-bold text-emerald-400">1. What the Data Confirms</h1>
-		<p class="mt-2 text-sm text-slate-400">
+		<h1 class="text-2xl font-bold" style="color: var(--color-positive); font-family: var(--font-display)">1. What the Data Confirms</h1>
+		<p class="mt-2 text-sm" style="color: var(--text-muted)">
 			Five thesis claims directly confirmed by the quantitative analysis, 4 of 5 at p&lt;0.001 (GDP growth p=0.058).
 		</p>
 	</div>
 
 	{#if !loaded}
-		<div class="py-20 text-center text-slate-500">Loading data...</div>
+		<div class="py-20 text-center" style="color: var(--text-dim)">Loading data...</div>
 	{:else if groupStats}
 		<!-- 1.1 Two-Speed Europe -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				1.1 The "Two-Speed Europe" / Core-Periphery Divergence
 			</h2>
 			<ThesisClaim
@@ -202,7 +202,7 @@
 			</div>
 
 			<div class="grid gap-4 lg:grid-cols-2">
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<LineChart
 						series={spreadSeries}
 						title="Average Sovereign Spreads: GIIPS vs Core"
@@ -210,7 +210,7 @@
 						events={crisisEvents}
 					/>
 				</div>
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<LineChart
 						series={unempSeries}
 						title="Average Unemployment: GIIPS vs Core"
@@ -221,8 +221,8 @@
 				</div>
 			</div>
 
-			<div class="rounded-md bg-emerald-900/20 border border-emerald-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-emerald-400">Strength:</strong> The statistical significance of group differences (4 of 5 at p&lt;0.001; GDP growth p=0.058)
+			<div class="rounded-md p-4 text-sm" style="background: rgba(127,121,60,0.1); border: 1px solid rgba(127,121,60,0.25); color: var(--text-muted)">
+				<strong style="color: var(--color-positive)">Strength:</strong> The statistical significance of group differences (4 of 5 at p&lt;0.001; GDP growth p=0.058)
 				means the GIIPS-Core distinction is not arbitrary but data-driven. The hierarchical cluster analysis
 				<em>naturally separates</em> countries into two clusters matching the GIIPS/Core division — directly
 				supporting the VoC framework (Assumption 3).
@@ -231,7 +231,7 @@
 
 		<!-- 1.2 Germany-Greece -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				1.2 The Germany-Greece Divergence as Extreme Case
 			</h2>
 			<ThesisClaim
@@ -248,7 +248,7 @@
 			</div>
 
 			<div class="grid gap-4 lg:grid-cols-3">
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<LineChart
 						series={deGrSeries.spreads}
 						title="Sovereign Spreads"
@@ -257,7 +257,7 @@
 						height={320}
 					/>
 				</div>
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<LineChart
 						series={deGrSeries.unemp}
 						title="Unemployment Rate"
@@ -267,7 +267,7 @@
 						height={320}
 					/>
 				</div>
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<LineChart
 						series={deGrSeries.gdp}
 						title="GDP Growth Rate"
@@ -282,7 +282,7 @@
 
 		<!-- 1.3 Austerity -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				1.3 Austerity and Labour Market Devastation
 			</h2>
 			<ThesisClaim
@@ -318,7 +318,7 @@
 				/>
 			</div>
 
-			<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+			<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 				<LineChart
 					series={giipsSeries}
 					title="GIIPS Sovereign Spreads with Crisis Events"
@@ -328,8 +328,8 @@
 				/>
 			</div>
 
-			<div class="rounded-md bg-amber-900/20 border border-amber-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-amber-400">Critical finding:</strong> Spreads were <em>higher</em> during
+			<div class="rounded-md p-4 text-sm" style="background: rgba(192,142,57,0.1); border: 1px solid rgba(192,142,57,0.25); color: var(--text-muted)">
+				<strong style="color: var(--accent-primary)">Critical finding:</strong> Spreads were <em>higher</em> during
 				bailout periods than the overall average, challenging the narrative that bailouts stabilised
 				markets. Conditionality without credible backstop (pre-OMT) was counterproductive.
 			</div>
@@ -337,7 +337,7 @@
 
 		<!-- 1.4 OMT -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				1.4 The OMT as Turning Point
 			</h2>
 			<ThesisClaim
@@ -374,25 +374,25 @@
 			</div>
 
 			{#if eventStudy.length}
-				<div class="overflow-x-auto rounded-lg border border-slate-700">
+				<div class="overflow-x-auto rounded-lg" style="border: 1px solid var(--border-default)">
 					<table class="w-full text-sm">
-						<thead class="bg-slate-800">
+						<thead style="background: var(--bg-surface)">
 							<tr>
-								<th class="px-4 py-2 text-left text-xs text-slate-400">Variable</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">Estimate</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">Std. Error</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">t-value</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">p-value</th>
+								<th class="px-4 py-2 text-left text-xs" style="color: var(--text-dim)">Variable</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">Estimate</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">Std. Error</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">t-value</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">p-value</th>
 							</tr>
 						</thead>
 						<tbody>
 							{#each eventStudy as row}
-								<tr class="border-t border-slate-700/50">
-									<td class="px-4 py-2 font-mono text-xs text-slate-300">{row.term}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs {(row.estimate as number) < 0 ? 'text-emerald-400' : 'text-red-400'}">{Number(row.estimate).toFixed(2)}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs text-slate-400">{Number(row.std_error || row['std.error'] || 0).toFixed(2)}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs text-slate-400">{Number(row.statistic || 0).toFixed(2)}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs {(row.p_value || row['p.value'] || 1) < 0.05 ? 'text-emerald-400 font-semibold' : 'text-slate-400'}">{Number(row.p_value || row['p.value'] || 0).toFixed(4)}</td>
+								<tr style="border-top: 1px solid var(--border-subtle)">
+									<td class="px-4 py-2 text-xs" style="font-family: var(--font-mono); color: var(--text-muted)">{row.term}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: {(row.estimate as number) < 0 ? 'var(--color-positive)' : 'var(--color-negative)'}">{Number(row.estimate).toFixed(2)}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: var(--text-dim)">{Number(row.std_error || row['std.error'] || 0).toFixed(2)}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: var(--text-dim)">{Number(row.statistic || 0).toFixed(2)}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: {(row.p_value || row['p.value'] || 1) < 0.05 ? 'var(--color-positive)' : 'var(--text-dim)'}; font-weight: {(row.p_value || row['p.value'] || 1) < 0.05 ? '600' : '400'}">{Number(row.p_value || row['p.value'] || 0).toFixed(4)}</td>
 								</tr>
 							{/each}
 						</tbody>
@@ -400,15 +400,15 @@
 				</div>
 			{/if}
 
-			<div class="rounded-md bg-emerald-900/20 border border-emerald-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-emerald-400">Strength:</strong> The 509 bps reduction quantifies the "Merkel paradox" —
+			<div class="rounded-md p-4 text-sm" style="background: rgba(127,121,60,0.1); border: 1px solid rgba(127,121,60,0.25); color: var(--text-muted)">
+				<strong style="color: var(--color-positive)">Strength:</strong> The 509 bps reduction quantifies the "Merkel paradox" —
 				breaking ordoliberal principles (no ECB bond purchases) to save the ordoliberal-designed system.
 			</div>
 		</section>
 
 		<!-- 1.5 Contagion -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				1.5 Contagion Was Real
 			</h2>
 			<ThesisClaim
@@ -426,7 +426,7 @@
 
 			<div class="grid gap-4 lg:grid-cols-2">
 				{#if corCells.cells.length}
-					<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+					<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 						<Heatmap
 							cells={corCells.cells}
 							rows={corCells.countries}
@@ -438,7 +438,7 @@
 				{/if}
 
 				{#if pcaLoadings.length}
-					<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+					<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 						<BarChart
 							bars={pcaLoadings.map((r) => ({
 								label: String(r.country),
@@ -454,22 +454,22 @@
 			</div>
 
 			{#if grangerResults.length}
-				<div class="overflow-x-auto rounded-lg border border-slate-700">
+				<div class="overflow-x-auto rounded-lg" style="border: 1px solid var(--border-default)">
 					<table class="w-full text-sm">
-						<thead class="bg-slate-800">
+						<thead style="background: var(--bg-surface)">
 							<tr>
-								<th class="px-4 py-2 text-left text-xs text-slate-400">Target Country</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">F-Statistic</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">p-value</th>
-								<th class="px-4 py-2 text-center text-xs text-slate-400">Significant</th>
+								<th class="px-4 py-2 text-left text-xs" style="color: var(--text-dim)">Target Country</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">F-Statistic</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">p-value</th>
+								<th class="px-4 py-2 text-center text-xs" style="color: var(--text-dim)">Significant</th>
 							</tr>
 						</thead>
 						<tbody>
 							{#each grangerResults as row}
-								<tr class="border-t border-slate-700/50">
-									<td class="px-4 py-2 text-slate-300">Greece → {row.target_country}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs text-slate-400">{Number(row.f_statistic).toFixed(3)}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs {Number(row.p_value) < 0.05 ? 'text-emerald-400' : 'text-slate-400'}">{Number(row.p_value).toFixed(4)}</td>
+								<tr style="border-top: 1px solid var(--border-subtle)">
+									<td class="px-4 py-2" style="color: var(--text-muted)">Greece → {row.target_country}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: var(--text-dim)">{Number(row.f_statistic).toFixed(3)}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: {Number(row.p_value) < 0.05 ? 'var(--color-positive)' : 'var(--text-dim)'}">{Number(row.p_value).toFixed(4)}</td>
 									<td class="px-4 py-2 text-center">{row.granger_causes === 'TRUE' || row.granger_causes === true ? '✓' : '—'}</td>
 								</tr>
 							{/each}
@@ -478,8 +478,8 @@
 				</div>
 			{/if}
 
-			<div class="rounded-md bg-amber-900/20 border border-amber-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-amber-400">Nuance:</strong> Granger causality from Greece was confirmed
+			<div class="rounded-md p-4 text-sm" style="background: rgba(192,142,57,0.1); border: 1px solid rgba(192,142,57,0.25); color: var(--text-muted)">
+				<strong style="color: var(--accent-primary)">Nuance:</strong> Granger causality from Greece was confirmed
 				only for Spain (not Italy, Portugal, Ireland). Contagion existed but was selective — the high PCA
 				loading suggests a common factor, possibly ECB policy or breakup fears rather than direct Greek contagion.
 			</div>

@@ -19,8 +19,8 @@
 	});
 
 	const crisisEvents = [
-		{ date: new Date('2010-05-02'), label: 'Greek Bailout', color: '#EF4444' },
-		{ date: new Date('2012-07-26'), label: 'OMT', color: '#10B981' }
+		{ date: new Date('2010-05-02'), label: 'Greek Bailout', color: '#944839' },
+		{ date: new Date('2012-07-26'), label: 'OMT', color: '#7f793c' }
 	];
 
 	// 2.1 Unemployment vs Debt — driven from regression_coefficients.csv
@@ -34,8 +34,8 @@
 			{ label: 'Unemployment', value: unemp?.estimate ?? 63.4, color: COLORS.giips },
 			{ label: 'GDP Growth', value: gdp?.estimate ?? -39.2, color: COLORS.core },
 			{ label: 'Debt (baseline)', value: debtBase?.estimate ?? 4.93, color: COLORS.warning },
-			{ label: 'Debt (w/ unemp)', value: debtMacro?.estimate ?? -2.28, color: '#94a3b8' },
-			{ label: 'Debt (crisis)', value: debtCrisis?.estimate ?? -5.89, color: '#64748b' }
+			{ label: 'Debt (w/ unemp)', value: debtMacro?.estimate ?? -2.28, color: '#8b8374' },
+			{ label: 'Debt (crisis)', value: debtCrisis?.estimate ?? -5.89, color: '#6b5d4f' }
 		];
 	});
 
@@ -106,18 +106,18 @@
 
 <div class="space-y-10">
 	<div>
-		<h1 class="text-2xl font-bold text-blue-400">2. What the Data Supplements</h1>
-		<p class="mt-2 text-sm text-slate-400">
+		<h1 class="text-2xl font-bold" style="color: var(--color-info); font-family: var(--font-display)">2. What the Data Supplements</h1>
+		<p class="mt-2 text-sm" style="color: var(--text-muted)">
 			New evidence that adds quantitative depth to the thesis's qualitative arguments.
 		</p>
 	</div>
 
 	{#if !loaded}
-		<div class="py-20 text-center text-slate-500">Loading data...</div>
+		<div class="py-20 text-center" style="color: var(--text-dim)">Loading data...</div>
 	{:else}
 		<!-- 2.1 Unemployment > Debt -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				2.1 Unemployment > Debt as Crisis Driver
 			</h2>
 			<ThesisClaim
@@ -133,7 +133,7 @@
 			</div>
 
 			{#if coefPlotData.length}
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<CoefficientPlot
 						data={coefPlotData}
 						title="Coefficient Estimates with 95% CI Across Model Specifications"
@@ -141,7 +141,7 @@
 					/>
 				</div>
 			{:else}
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<BarChart
 						bars={regressionBars}
 						title="Regression Coefficients: Effect on Spreads (bps per 1% change)"
@@ -151,8 +151,8 @@
 				</div>
 			{/if}
 
-			<div class="rounded-md bg-blue-900/20 border border-blue-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-blue-400">Implication:</strong> Ordoliberal crisis management focused on
+			<div class="rounded-md p-4 text-sm" style="background: rgba(24,73,72,0.15); border: 1px solid rgba(24,73,72,0.3); color: var(--text-muted)">
+				<strong style="color: #2d6765">Implication:</strong> Ordoliberal crisis management focused on
 				debt reduction (Maastricht criteria, Fiscal Compact), but markets cared more about labour market
 				health. Austerity <em>increased</em> unemployment, which <em>increased</em> spreads — the opposite
 				of the intended effect. This strengthens the critique of mis-targeted policy.
@@ -161,7 +161,7 @@
 
 		<!-- 2.2 Non-Stationarity -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				2.2 Non-Stationarity: Shocks Have Permanent Effects
 			</h2>
 			<ThesisClaim
@@ -171,22 +171,22 @@
 			/>
 
 			{#if unitRootTests.length}
-				<div class="overflow-x-auto rounded-lg border border-slate-700">
+				<div class="overflow-x-auto rounded-lg" style="border: 1px solid var(--border-default)">
 					<table class="w-full text-sm">
-						<thead class="bg-slate-800">
+						<thead style="background: var(--bg-surface)">
 							<tr>
-								<th class="px-4 py-2 text-left text-xs text-slate-400">Variable</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">ADF Statistic</th>
-								<th class="px-4 py-2 text-right text-xs text-slate-400">p-value</th>
-								<th class="px-4 py-2 text-center text-xs text-slate-400">Stationary?</th>
+								<th class="px-4 py-2 text-left text-xs" style="color: var(--text-dim)">Variable</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">ADF Statistic</th>
+								<th class="px-4 py-2 text-right text-xs" style="color: var(--text-dim)">p-value</th>
+								<th class="px-4 py-2 text-center text-xs" style="color: var(--text-dim)">Stationary?</th>
 							</tr>
 						</thead>
 						<tbody>
 							{#each unitRootTests as row}
-								<tr class="border-t border-slate-700/50">
-									<td class="px-4 py-2 font-mono text-xs text-slate-300">{row.variable}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs text-slate-400">{Number(row.adf_statistic).toFixed(3)}</td>
-									<td class="px-4 py-2 text-right font-mono text-xs {Number(row.p_value) < 0.05 ? 'text-emerald-400' : 'text-red-400'}">{Number(row.p_value).toFixed(3)}</td>
+								<tr style="border-top: 1px solid var(--border-subtle)">
+									<td class="px-4 py-2 text-xs" style="font-family: var(--font-mono); color: var(--text-muted)">{row.variable}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: var(--text-dim)">{Number(row.adf_statistic).toFixed(3)}</td>
+									<td class="px-4 py-2 text-right text-xs" style="font-family: var(--font-mono); color: {Number(row.p_value) < 0.05 ? 'var(--color-positive)' : 'var(--color-negative)'}">{Number(row.p_value).toFixed(3)}</td>
 									<td class="px-4 py-2 text-center">{row.stationary === 'TRUE' || row.stationary === true ? '✓ Yes' : '✗ No'}</td>
 								</tr>
 							{/each}
@@ -201,8 +201,8 @@
 				<StatCard label="Mean Reversion" value="None" detail="Shocks are permanent" color="text-red-400" />
 			</div>
 
-			<div class="rounded-md bg-blue-900/20 border border-blue-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-blue-400">Implication:</strong> Without policy intervention, divergence becomes
+			<div class="rounded-md p-4 text-sm" style="background: rgba(24,73,72,0.15); border: 1px solid rgba(24,73,72,0.3); color: var(--text-muted)">
+				<strong style="color: #2d6765">Implication:</strong> Without policy intervention, divergence becomes
 				self-reinforcing. This provides statistical backing for the argument about the Eurozone's structural
 				incompleteness — exactly what OCA theory predicts for a non-optimal currency area without fiscal transfers.
 			</div>
@@ -210,7 +210,7 @@
 
 		<!-- 2.3 No Convergence -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				2.3 No Convergence — Sigma or Beta
 			</h2>
 			<ThesisClaim
@@ -226,7 +226,7 @@
 			</div>
 
 			{#if sigmaData.length}
-				<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 					<LineChart
 						series={sigmaData}
 						title="Sigma-Convergence Test: Standard Deviation Over Time"
@@ -236,15 +236,15 @@
 				</div>
 			{/if}
 
-			<div class="rounded-md bg-blue-900/20 border border-blue-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-blue-400">Implication:</strong> Directly challenges Assumption 6 and the endogenous
+			<div class="rounded-md p-4 text-sm" style="background: rgba(24,73,72,0.15); border: 1px solid rgba(24,73,72,0.3); color: var(--text-muted)">
+				<strong style="color: #2d6765">Implication:</strong> Directly challenges Assumption 6 and the endogenous
 				OCA hypothesis. The Eurozone's one-size-fits-all monetary policy was structurally inappropriate.
 			</div>
 		</section>
 
 		<!-- 2.4 Ireland Outlier -->
 		<section class="space-y-4">
-			<h2 class="border-b border-slate-700 pb-2 text-lg font-semibold text-white">
+			<h2 class="pb-2 text-lg font-semibold" style="color: var(--text-primary); font-family: var(--font-display); border-bottom: 1px solid var(--border-default)">
 				2.4 Ireland as Outlier — Challenges "Periphery = Failure"
 			</h2>
 			<ThesisClaim
@@ -259,7 +259,7 @@
 				<StatCard label="Ireland Peak Spread" value="791 bps" detail="<½ of Portugal, ¼ of Greece" color="text-blue-400" />
 			</div>
 
-			<div class="rounded-lg border border-slate-700 bg-slate-800/40 p-4">
+			<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">
 				<LineChart
 					series={cumulativeGDP}
 					title="Cumulative GDP Growth: Ireland vs Other GIIPS and Germany"
@@ -269,8 +269,8 @@
 				/>
 			</div>
 
-			<div class="rounded-md bg-blue-900/20 border border-blue-800/40 p-4 text-sm text-slate-300">
-				<strong class="text-blue-400">Implication:</strong> Ireland's divergent recovery path directly addresses
+			<div class="rounded-md p-4 text-sm" style="background: rgba(24,73,72,0.15); border: 1px solid rgba(24,73,72,0.3); color: var(--text-muted)">
+				<strong style="color: #2d6765">Implication:</strong> Ireland's divergent recovery path directly addresses
 				the Section 7.2 critique about within-type variation. The thesis acknowledges this qualitatively — this
 				data provides the quantitative evidence.
 			</div>

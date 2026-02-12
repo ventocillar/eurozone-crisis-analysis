@@ -71,7 +71,7 @@
 			)
 			.selectAll('line')
 			.attr('stroke', COLORS.surfaceLight)
-			.attr('stroke-opacity', 0.3);
+			.attr('stroke-opacity', 0.15);
 		g.selectAll('.grid .domain').remove();
 
 		// Axes
@@ -80,12 +80,14 @@
 			.call(d3.axisBottom(x).ticks(8))
 			.selectAll('text')
 			.attr('fill', COLORS.textMuted)
+			.style('font-family', 'var(--font-body)')
 			.style('font-size', '11px');
 
 		g.append('g')
 			.call(d3.axisLeft(y).ticks(6).tickFormat(yFormat as any))
 			.selectAll('text')
 			.attr('fill', COLORS.textMuted)
+			.style('font-family', 'var(--font-body)')
 			.style('font-size', '11px');
 
 		g.selectAll('.domain').attr('stroke', COLORS.surfaceLight);
@@ -99,6 +101,7 @@
 				.attr('x', -innerH / 2)
 				.attr('text-anchor', 'middle')
 				.attr('fill', COLORS.textMuted)
+				.style('font-family', 'var(--font-body)')
 				.style('font-size', '12px')
 				.text(yLabel);
 		}
@@ -112,14 +115,15 @@
 					.attr('x2', ex)
 					.attr('y1', 0)
 					.attr('y2', innerH)
-					.attr('stroke', evt.color ?? '#EF4444')
+					.attr('stroke', evt.color ?? '#944839')
 					.attr('stroke-dasharray', '4,3')
 					.attr('stroke-opacity', 0.6);
 
 				g.append('text')
 					.attr('x', ex + 4)
 					.attr('y', 14)
-					.attr('fill', evt.color ?? '#EF4444')
+					.attr('fill', evt.color ?? '#944839')
+					.style('font-family', 'var(--font-body)')
 					.style('font-size', '10px')
 					.text(evt.label);
 			}
@@ -137,7 +141,8 @@
 				.datum(s.data)
 				.attr('fill', 'none')
 				.attr('stroke', s.color)
-				.attr('stroke-width', 2)
+				.attr('stroke-width', 2.5)
+				.attr('stroke-linecap', 'round')
 				.attr('d', line);
 		}
 
@@ -147,14 +152,17 @@
 			.append('div')
 			.style('position', 'absolute')
 			.style('display', 'none')
-			.style('background', COLORS.surface)
-			.style('border', `1px solid ${COLORS.surfaceLight}`)
-			.style('border-radius', '6px')
-			.style('padding', '8px 12px')
+			.style('background', 'rgba(15,35,34,0.92)')
+			.style('border', '1px solid rgba(192,142,57,0.4)')
+			.style('border-radius', '8px')
+			.style('padding', '10px 14px')
 			.style('font-size', '12px')
+			.style('font-family', 'var(--font-body)')
 			.style('color', COLORS.text)
 			.style('pointer-events', 'none')
-			.style('z-index', '10');
+			.style('z-index', '10')
+			.style('backdrop-filter', 'blur(8px)')
+			.style('box-shadow', '0 4px 20px rgba(0,0,0,0.4)');
 
 		svg
 			.append('rect')
@@ -196,10 +204,10 @@
 
 <div class="relative">
 	{#if title}
-		<h3 class="mb-2 text-sm font-semibold text-slate-300">{title}</h3>
+		<h3 class="mb-2 text-sm font-semibold" style="color: var(--text-muted); font-family: var(--font-display)">{title}</h3>
 	{/if}
 	{#if showLegend && series.length > 1}
-		<div class="mb-2 flex flex-wrap gap-3 text-xs">
+		<div class="mb-2 flex flex-wrap gap-3 text-xs" style="color: var(--text-muted)">
 			{#each series as s}
 				<span class="flex items-center gap-1.5">
 					<span class="inline-block h-2.5 w-4 rounded-sm" style="background:{s.color}"></span>
