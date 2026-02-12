@@ -44,14 +44,14 @@ export const CORE = ['Germany', 'France', 'Netherlands', 'Austria'];
 
 export const COLORS = {
 	giips: '#944839',
-	core: '#184948',
-	germany: '#022a2a',
+	core: '#5ba3a0',
+	germany: '#7b96b0',
 	greece: '#944839',
 	ireland: '#7f793c',
 	italy: '#c08e39',
 	portugal: '#a8664f',
 	spain: '#b57845',
-	france: '#184948',
+	france: '#5ba3a0',
 	netherlands: '#2d6765',
 	austria: '#4a5d52',
 	accent: '#c08e39',

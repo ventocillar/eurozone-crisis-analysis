@@ -39,7 +39,10 @@
 		if (!container || !data.length) return;
 		d3.select(container).selectAll('*').remove();
 
-		const margin = { top: 10, right: 20, bottom: 30, left: 120 };
+		const models = [...new Set(data.map((d) => d.model))];
+		const legendRows = Math.ceil(models.length / 3);
+		const legendSpace = 20 + legendRows * 18;
+		const margin = { top: 10, right: 20, bottom: 30 + legendSpace, left: 120 };
 		const width = container.clientWidth;
 		const innerW = width - margin.left - margin.right;
 		const innerH = height - margin.top - margin.bottom;
@@ -52,9 +55,8 @@
 
 		const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-		// Get unique variables and models
+		// Get unique variables
 		const variables = [...new Set(data.map((d) => d.variable))];
-		const models = [...new Set(data.map((d) => d.model))];
 
 		// Y scale: one band per variable, subdivided by model
 		const yOuter = d3.scaleBand().domain(variables).range([0, innerH]).padding(0.3);
@@ -147,30 +149,37 @@
 
 		g.selectAll('.tick line').attr('stroke', COLORS.surfaceLight);
 
-		// Legend
+		// Legend — positioned below x-axis, wrapping into rows of 3
+		const colsPerRow = 3;
+		const colWidth = innerW / colsPerRow;
+		const legendTop = margin.top + innerH + 32;
+
 		const legendG = svg
 			.append('g')
-			.attr('transform', `translate(${margin.left + 10},${height - 15})`);
+			.attr('transform', `translate(${margin.left},${legendTop})`);
 
 		models.forEach((model, i) => {
-			const lx = i * 130;
+			const col = i % colsPerRow;
+			const row = Math.floor(i / colsPerRow);
+			const lx = col * colWidth;
+			const ly = row * 18;
 			const color = MODEL_COLORS[model] || COLORS.textMuted;
 
 			legendG
 				.append('circle')
-				.attr('cx', lx)
-				.attr('cy', 0)
+				.attr('cx', lx + 4)
+				.attr('cy', ly)
 				.attr('r', 4)
 				.attr('fill', color);
 
 			legendG
 				.append('text')
-				.attr('x', lx + 8)
-				.attr('y', 0)
+				.attr('x', lx + 14)
+				.attr('y', ly)
 				.attr('dy', '0.35em')
 				.attr('fill', COLORS.textMuted)
 				.style('font-family', 'var(--font-body)')
-				.style('font-size', '10px')
+				.style('font-size', '11px')
 				.text(model);
 		});
 	}

@@ -137,8 +137,11 @@
 					<CoefficientPlot
 						data={coefPlotData}
 						title="Coefficient Estimates with 95% CI Across Model Specifications"
-						height={380}
+						height={420}
 					/>
+				</div>
+				<div class="rounded-md p-3 text-xs" style="background: rgba(15,35,34,0.6); border: 1px solid var(--border-subtle); color: var(--text-dim)">
+					<strong style="color: var(--text-muted)">How to read this chart:</strong> Each dot represents the estimated effect of a variable on sovereign bond spreads (in basis points per 1% change). The horizontal whiskers show the 95% confidence interval — if they cross the dashed vertical zero line, the effect is not statistically distinguishable from zero. <strong style="color: var(--text-muted)">Filled circles</strong> indicate statistical significance (p&lt;0.05); <strong style="color: var(--text-muted)">hollow circles</strong> indicate the estimate is not significant. Different colours represent different model specifications, allowing comparison of how robust each variable's effect is across models.
 				</div>
 			{:else}
 				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">

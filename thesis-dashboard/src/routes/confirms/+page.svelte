@@ -31,8 +31,7 @@
 
 	const crisisEvents = [
 		{ date: new Date('2010-05-02'), label: 'Greek Bailout', color: '#944839' },
-		{ date: new Date('2012-07-26'), label: 'Draghi "whatever it takes"', color: '#7f793c' },
-		{ date: new Date('2012-09-06'), label: 'OMT', color: '#7f793c' }
+		{ date: new Date('2012-08-15'), label: 'Draghi / OMT', color: '#7f793c' }
 	];
 
 	// 1.1 GIIPS vs Core spread series

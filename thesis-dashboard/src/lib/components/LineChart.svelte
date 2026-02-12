@@ -106,7 +106,9 @@
 				.text(yLabel);
 		}
 
-		// Event lines
+		// Event lines — merge labels that are too close together
+		let lastLabelY = -Infinity;
+		let lastLabelX = -Infinity;
 		for (const evt of events) {
 			const ex = x(evt.date);
 			if (ex >= 0 && ex <= innerW) {
@@ -119,9 +121,17 @@
 					.attr('stroke-dasharray', '4,3')
 					.attr('stroke-opacity', 0.6);
 
+				// Stagger labels vertically if they overlap horizontally
+				let labelY = 14;
+				if (Math.abs(ex - lastLabelX) < 80) {
+					labelY = lastLabelY + 14;
+				}
+				lastLabelX = ex;
+				lastLabelY = labelY;
+
 				g.append('text')
 					.attr('x', ex + 4)
-					.attr('y', 14)
+					.attr('y', labelY)
 					.attr('fill', evt.color ?? '#944839')
 					.style('font-family', 'var(--font-body)')
 					.style('font-size', '10px')

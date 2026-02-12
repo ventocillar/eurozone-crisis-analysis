@@ -151,8 +151,11 @@
 					<CoefficientPlot
 						data={debtCoefPlotData}
 						title="Debt-to-GDP Coefficient Across Model Specifications"
-						height={300}
+						height={340}
 					/>
+				</div>
+				<div class="rounded-md p-3 text-xs" style="background: rgba(15,35,34,0.6); border: 1px solid var(--border-subtle); color: var(--text-dim)">
+					<strong style="color: var(--text-muted)">How to read this chart:</strong> Each dot shows the estimated effect of debt-to-GDP on sovereign spreads (basis points per 1% increase in debt). Horizontal whiskers represent the 95% confidence interval. If the whisker crosses the dashed zero line, the effect is not statistically significant. <strong style="color: var(--text-muted)">Filled circles</strong> = significant (p&lt;0.05); <strong style="color: var(--text-muted)">hollow circles</strong> = not significant. Notice how the coefficient changes sign and significance depending on which controls are included — this instability is itself the key finding.
 				</div>
 			{:else}
 				<div class="rounded-lg p-4" style="background: var(--bg-card); border: 1px solid var(--border-default)">

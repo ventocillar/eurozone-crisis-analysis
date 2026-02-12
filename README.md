@@ -196,9 +196,9 @@ Six reusable D3+Svelte components, each following the same pattern: render in `o
 
 | Component | Purpose | Key Features |
 |---|---|---|
-| `LineChart` | Multi-series time series | Crisis event annotations (dashed vertical lines), warm tooltip with backdrop-blur, 2.5px strokes with round linecaps |
+| `LineChart` | Multi-series time series | Crisis event annotations (dashed vertical lines with auto-staggered labels), warm tooltip with backdrop-blur, 2.5px strokes with round linecaps |
 | `BarChart` | Grouped comparisons | Horizontal/vertical modes, rounded corners (`rx: 4`), darker stroke outlines, dashed zero-reference line |
-| `CoefficientPlot` | Forest plot for regression coefficients | Grouped by model (colour-coded), filled = significant / hollow = not, whiskers = 95% CI |
+| `CoefficientPlot` | Forest plot for regression coefficients | Grouped by model (colour-coded), filled = significant / hollow = not, whiskers = 95% CI, multi-row legend with "how to read" explainer |
 | `Heatmap` | Correlation matrices | Diverging colour scale (teal -- warm white -- terracotta), contrast-aware cell text |
 | `StatCard` | Key metric display | Display font for values, uppercase dim labels, colour mapped through CSS variable system |
 | `ThesisClaim` | Thesis argument with status badge | Nattier-tinted backgrounds per status (confirmed/supplemented/challenged/extension), italic Playfair Display |
@@ -286,6 +286,8 @@ The most counterintuitive finding. If contagion increases co-movement, why did G
 - **Svelte 5 + D3 integration**: D3 performs direct DOM manipulation, which can conflict with Svelte's compiler-driven reactivity. The solution: D3 renders inside `onMount` (after the DOM exists), and Svelte's `$effect` triggers complete redraws when data changes, avoiding partial-update conflicts.
 
 - **Tailwind v4 + CSS variables**: Tailwind's utility classes (`bg-slate-800`, `text-emerald-400`) cannot be dynamically interpolated from data. The Nattier redesign replaced all colour-bearing Tailwind classes with inline `style` attributes referencing CSS custom properties (`var(--accent-primary)`), enabling a coherent theme while preserving Tailwind's layout utilities.
+
+- **Colour legibility on dark backgrounds**: Several country colours in the Nattier palette were too close to the dark background (`#0a1514`). Germany's original deep teal (`#022a2a`) was virtually invisible. The solution was a desaturated steel-navy (`#7b96b0`) that reads clearly while remaining elegant. Core/France colours were similarly brightened to `#5ba3a0` for contrast.
 
 ---
 
